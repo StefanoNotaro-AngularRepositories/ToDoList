@@ -22,7 +22,7 @@
     </div>
 </div>
 <br />
-<div class="row card" [formGroup]="toDoGroup">
+<div class="row card" [formGroup]="toDoGroup" *ngIf="anyCompletedItem()">
     <h2 class="card-title">Completed</h2>
     <div class="card-body">
         <ul class="list-group list-group-flush">
