@@ -11,6 +11,8 @@ import * as _ from 'underscore';
 export class ToDoComponent implements OnInit {
   public toDoItems = [];
 
+  public allTaskDone: boolean;
+
   public toDoGroup = new FormGroup({
     toDoItem: new FormControl(''),
     items: new FormArray(this.toDoItems),
@@ -21,26 +23,40 @@ export class ToDoComponent implements OnInit {
     this.toDoItems.push(new FormControl({ checked: false, text: 'Test 2' }));
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.checkAllTaskDone();
+  }
 
   public addNewItem() {
     if (this.toDoGroup.controls.toDoItem.value) {
       this.toDoItems.push(new FormControl({ checked: false, text: this.toDoGroup.controls.toDoItem.value }));
       this.toDoGroup.controls.toDoItem.reset();
+      this.checkAllTaskDone();
     }
   }
 
   public itemDone(item: Item) {
     item.checked = !item.checked;
+    this.checkAllTaskDone();
   }
 
   public removeItem(i) {
     this.toDoItems.splice(i, 1);
+    this.checkAllTaskDone();
   }
 
-  public reorderElements(elements) {
-    return _.sortBy(elements, (x) => {
-      return x.value.checked;
-    });
+  public notCompletedElements(elements) {
+    return elements.filter((x) => !x.value.checked);
+  }
+
+  public completedElements(elements) {
+    return elements.filter((x) => x.value.checked);
+  }
+
+  private checkAllTaskDone() {
+    this.allTaskDone = true;
+    if (this.toDoItems.filter((x) => !x.value.checked).length !== 0) {
+      this.allTaskDone = false;
+    }
   }
 }
