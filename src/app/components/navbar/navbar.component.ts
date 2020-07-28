@@ -9,7 +9,7 @@ export class NavbarComponent implements OnInit {
   public navBarTitle = 'To-Do APP';
   public menuItems = [
     { Name: 'To-Do', Path: 'ToDo' },
-    { Name: 'Done', Path: 'Done' },
+    // { Name: 'Done', Path: 'Done' },
   ];
 
   constructor() {}

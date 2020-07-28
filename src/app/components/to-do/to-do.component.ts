@@ -19,8 +19,8 @@ export class ToDoComponent implements OnInit {
   });
 
   constructor() {
-    this.toDoItems.push(new FormControl({ checked: true, text: 'Test 1' }));
-    this.toDoItems.push(new FormControl({ checked: false, text: 'Test 2' }));
+    this.toDoItems.push(new FormControl({ checked: false, text: 'Example 1' }));
+    this.toDoItems.push(new FormControl({ checked: true, text: 'Example 2' }));
   }
 
   ngOnInit(): void {
@@ -40,8 +40,9 @@ export class ToDoComponent implements OnInit {
     this.checkAllTaskDone();
   }
 
-  public removeItem(i) {
-    this.toDoItems.splice(i, 1);
+  public removeItem(item) {
+    const itemIndex = this.toDoItems.indexOf(item);
+    this.toDoItems.splice(itemIndex, 1);
     this.checkAllTaskDone();
   }
 
@@ -58,5 +59,9 @@ export class ToDoComponent implements OnInit {
     if (this.toDoItems.filter((x) => !x.value.checked).length !== 0) {
       this.allTaskDone = false;
     }
+  }
+
+  public anyCompletedItem() {
+    return this.toDoItems.filter((x) => x.value.checked).length > 0;
   }
 }

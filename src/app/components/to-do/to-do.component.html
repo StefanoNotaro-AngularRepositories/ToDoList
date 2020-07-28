@@ -16,13 +16,13 @@
                     </div>
                 </div>
                 <li class="list-group-item form-control" [ngClass]="{ checked: item.value.checked }">{{ item.value.text }}</li>
-                <button type="button" class="btn btn-danger" (click)="removeItem(i)"><i class="fa fa-trash"></i></button>
+                <button type="button" class="btn btn-danger" (click)="removeItem(item)"><i class="fa fa-trash"></i></button>
             </div>
         </ul>
     </div>
 </div>
 <br />
-<div class="row card" [formGroup]="toDoGroup">
+<div class="row card" [formGroup]="toDoGroup" *ngIf="anyCompletedItem()">
     <h2 class="card-title">Completed</h2>
     <div class="card-body">
         <ul class="list-group list-group-flush">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <li class="list-group-item form-control" [ngClass]="{ checked: item.value.checked }">{{ item.value.text }}</li>
-                <button type="button" class="btn btn-danger" (click)="removeItem(i)"><i class="fa fa-trash"></i></button>
+                <button type="button" class="btn btn-danger" (click)="removeItem(item)"><i class="fa fa-trash"></i></button>
             </div>
         </ul>
     </div>
