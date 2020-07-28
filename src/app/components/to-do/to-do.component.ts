@@ -40,8 +40,9 @@ export class ToDoComponent implements OnInit {
     this.checkAllTaskDone();
   }
 
-  public removeItem(i) {
-    this.toDoItems.splice(i, 1);
+  public removeItem(item) {
+    const itemIndex = this.toDoItems.indexOf(item);
+    this.toDoItems.splice(itemIndex, 1);
     this.checkAllTaskDone();
   }
 

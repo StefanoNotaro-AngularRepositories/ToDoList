@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <li class="list-group-item form-control" [ngClass]="{ checked: item.value.checked }">{{ item.value.text }}</li>
-                <button type="button" class="btn btn-danger" (click)="removeItem(i)"><i class="fa fa-trash"></i></button>
+                <button type="button" class="btn btn-danger" (click)="removeItem(item)"><i class="fa fa-trash"></i></button>
             </div>
         </ul>
     </div>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <li class="list-group-item form-control" [ngClass]="{ checked: item.value.checked }">{{ item.value.text }}</li>
-                <button type="button" class="btn btn-danger" (click)="removeItem(i)"><i class="fa fa-trash"></i></button>
+                <button type="button" class="btn btn-danger" (click)="removeItem(item)"><i class="fa fa-trash"></i></button>
             </div>
         </ul>
     </div>
