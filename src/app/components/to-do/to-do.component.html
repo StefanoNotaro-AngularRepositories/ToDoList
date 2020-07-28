@@ -1,1 +1,21 @@
-<p>to-do works!</p>
+<div class="row card" [formGroup]="toDoGroup">
+    <h2 class="card-title">To-Do</h2>
+    <div class="input-group flex-nowrap card-body">
+        <input type="text" class="form-control col-md-10 col-sm-10 col-xs-10" placeholder="New To-Do" [formControl]="toDoGroup.controls['toDoItem']" (keydown.enter)="addNewItem()" />
+        <button type="button" class="btn btn-primary col-md-2 col-sm-2 col-xs-2" (click)="addNewItem()"><i class="fa fa-plus-circle"></i> Add</button>
+    </div>
+
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <div class="input-group" *ngFor="let item of reorderElements(toDoGroup.controls.items['controls']); let i = index">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" [checked]="item.value.checked" (click)="itemDone(item.value)" />
+                    </div>
+                </div>
+                <li class="list-group-item form-control" [ngClass]="{ checked: item.value.checked }">{{ item.value.text }}</li>
+                <button type="button" class="btn btn-danger" (click)="removeItem(i)"><i class="fa fa-trash"></i></button>
+            </div>
+        </ul>
+    </div>
+</div>
